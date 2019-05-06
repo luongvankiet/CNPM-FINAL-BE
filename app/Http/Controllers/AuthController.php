@@ -72,8 +72,16 @@ class AuthController extends Controller
     public function me()
     {
         $userID = Auth::user()->id;
-        $user = User::where('id', $userID)->with('companies')->first();
-        return response()->json($user);
+
+        $user = User::where('id', $userID)->with(['companies', 'posts' => function($post){
+            $post->with(['products' => function($product){
+                $product->with('images');
+            },
+            'users' => function($user){
+                $user->with('companies');
+            }]);
+        }])->first();
+        return json_encode($user);
     }
 
     /**
