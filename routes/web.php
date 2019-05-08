@@ -20,5 +20,5 @@
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::fallback(function() {
-	return \File::get(public_path() . '\app\index.html');
+	return \File::get(public_path() . '\FinalProject\index.html');
 });
