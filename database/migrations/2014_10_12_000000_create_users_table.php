@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->longText('profileImg')->nullable();
             $table->boolean('active')->default(true);
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }
